@@ -42,7 +42,7 @@ done
 #############writing queries to param file############################
 awk -F '|' '{print $1}' RESULT_FILE.csv | sed "s/^/select import_source||'|'||count(1)||'|'||sum(round(nvl(avg_outstanding,0),1)) AVG_OUTSTANDING from TABLE_NAME where import_source in('/;s/$/') group by import_source order by import_source;/" > RESULT_FILE_Param.sql
 #############writing spool file name to param file############################
-sed -i -e '1i\'"set newpage none\nset verify off\nset heading off\nset colsep '|'\nset linesize 300\nSET UNDERLINE OFF\nset feedback off\nset termout off\nset trimout on\nset tab off\ncolumn AVG_OUTSTANDING format 9999999999999999.99;\ncall pkg_rapm_context.set_period('&1');\nspool AVG_BAL_DB.csv append" -e '$ a\'"spool off;" RESULT_FILE_Param.sql>> RESULT_FILE_Param.sql
+sed -i -e '1i\'"set newpage none\nset verify off\nset heading off\nset colsep '|'\nset linesize 300\nSET UNDERLINE OFF\nset feedback off\nset termout off\nset trimout on\nset tab off\ncolumn AVG_OUTSTANDING format 9999999999999999.99;\ncall pkg_rapm_context.set_period('&1');\nspool RESULT_DB.csv append" -e '$ a\'"spool off;" RESULT_FILE_Param.sql>> RESULT_FILE_Param.sql
 #############process X_FileName_FILE.csv file############################
 sed -i 's/.dat//' X_FileName_FILE.csv
 sed -i "/*/d" X_FileName_FILE.csv
