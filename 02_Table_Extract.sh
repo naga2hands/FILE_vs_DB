@@ -13,6 +13,7 @@ echo "DB extraction run has been initiated"
 sqlplus $Schemaname1/$Password1@$SERVICENAME1 << EOF
 whenever sqlerror exit sql.sqlcode;
 set echo off
-@sample.sql $Pkey1
+@RESULT_FILE_Param.sql $Pkey1
+@FileName_FILE_Param.sql $Pkey1
 exit;
 EOF
