@@ -1,5 +1,5 @@
 #!/bin/ksh
-echo "File extraction run has been initiated"
+echo "File extraction run has been initiated."
 echo "=============================================================================="
 file_path="/home/sit/files"
 path_output="/home/sit/files/output"
